@@ -10,8 +10,8 @@ export const authClient = createAuthClient({
         magicLinkClient(),
         anonymousClient(),
         expoClient({
-            scheme: 'zeron',
-            storagePrefix: 'zeron',
+            scheme: 'znative',
+            storagePrefix: 'znative',
             storage: SecureStore,
         }),
     ],

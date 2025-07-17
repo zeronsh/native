@@ -26,12 +26,12 @@ const styles = StyleSheet.create(theme => ({
         variants: {
             hasNextMessage: {
                 false: {
-                    paddingBottom: theme.utils.spacing(6),
+                    paddingBottom: theme.utils.spacing(12),
                 },
             },
             hasPreviousMessage: {
                 false: {
-                    paddingTop: theme.utils.spacing(6),
+                    paddingTop: theme.utils.spacing(12),
                 },
             },
         },

@@ -4,9 +4,18 @@ import { FontAwesome } from '$components/icon';
 import { StyleSheet } from 'react-native-unistyles';
 import { useState } from 'react';
 import { Platform } from 'react-native';
+import { useThread } from '$components/thread/context';
 
 export function PromptInput() {
+    const thread = useThread();
     const [message, setMessage] = useState('');
+
+    const handleSubmit = () => {
+        thread.sendMessage({
+            parts: [{ type: 'text', text: message }],
+        });
+        setMessage('');
+    };
 
     return (
         <View style={styles.container}>
@@ -20,10 +29,12 @@ export function PromptInput() {
                 uniProps={theme => ({
                     placeholderTextColor: theme.colors.mutedForeground,
                 })}
+                onSubmitEditing={handleSubmit}
             />
             <View style={styles.footer}>
                 <Button
                     size="icon"
+                    onPress={handleSubmit}
                     icon={
                         <FontAwesome
                             name="arrow-up"

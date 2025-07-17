@@ -26,15 +26,16 @@ const styles = StyleSheet.create(theme => ({
     container: {
         paddingVertical: theme.utils.spacing(3),
         justifyContent: 'flex-end',
+        maxWidth: theme.widths.md,
         variants: {
             hasNextMessage: {
                 false: {
-                    paddingBottom: theme.utils.spacing(6),
+                    paddingBottom: theme.utils.spacing(12),
                 },
             },
             hasPreviousMessage: {
                 false: {
-                    paddingTop: theme.utils.spacing(6),
+                    paddingTop: theme.utils.spacing(12),
                 },
             },
         },

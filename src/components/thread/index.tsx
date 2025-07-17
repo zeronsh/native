@@ -3,11 +3,40 @@ import { MessageList } from '$components/thread/message-list';
 import { PromptInput } from '$components/thread/prompt-input';
 import { StyleSheet } from 'react-native-unistyles';
 import { useChat, Chat } from '@ai-sdk/react';
-import { createContext, useContext, useRef } from 'react';
+import { useRef } from 'react';
 import { ThreadMessage } from '$ai/types';
+import { DefaultChatTransport } from 'ai';
+import { useDatabase } from '$zero/context';
+import { useSettings } from '$user/use-settings';
+import { ThreadProvider } from '$components/thread/context';
 
 export default function Thread() {
-    const thread = useRef(new Chat<ThreadMessage>({}));
+    const db = useDatabase();
+
+    useSettings();
+
+    const thread = useRef(
+        new Chat<ThreadMessage>({
+            transport: new DefaultChatTransport({
+                api: '/api/thread',
+                credentials: 'include',
+                prepareSendMessagesRequest: async ({ id, messages }) => {
+                    const settings = db.query.setting
+                        .where('userId', '=', db.userID)
+                        .one()
+                        .materialize();
+                    return {
+                        body: {
+                            id,
+                            message: messages.at(-1),
+                            modelId: settings.data?.modelId,
+                        },
+                    };
+                },
+            }),
+        })
+    );
+
     const { messages } = useChat({
         chat: thread.current,
     });
@@ -22,30 +51,9 @@ export default function Thread() {
     );
 }
 
-const ThreadContext = createContext<Chat<ThreadMessage> | null>(null);
-
-function ThreadProvider({
-    children,
-    thread,
-}: {
-    children: React.ReactNode;
-    thread: Chat<ThreadMessage>;
-}) {
-    return <ThreadContext.Provider value={thread}>{children}</ThreadContext.Provider>;
-}
-
-export function useThread() {
-    const thread = useContext(ThreadContext);
-    if (!thread) {
-        throw new Error('Thread not found');
-    }
-    return thread;
-}
-
 const styles = StyleSheet.create((_, rt) => ({
     container: {
         flex: 1,
-        gap: 16,
         height: '100%',
         flexDirection: 'column',
         alignItems: 'center',

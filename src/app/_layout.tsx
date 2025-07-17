@@ -4,6 +4,7 @@ import { IBMPlexSans_400Regular } from '@expo-google-fonts/ibm-plex-sans';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { DatabaseProvider } from '$zero/context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -23,8 +24,10 @@ export default function RootLayout() {
     }
 
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <Slot />
-        </GestureHandlerRootView>
+        <DatabaseProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <Slot />
+            </GestureHandlerRootView>
+        </DatabaseProvider>
     );
 }
