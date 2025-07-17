@@ -2,14 +2,14 @@ import { ThreadMessage } from '$ai/types';
 import { AssistantMessage } from '$components/thread/assistant-message';
 import { PendingMessage } from '$components/thread/pending-message';
 import { UserMessage } from '$components/thread/user-message';
-import { LegendList, LegendListRenderItemProps } from '@legendapp/list';
 import { Fragment, useCallback } from 'react';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 
 export function MessageList(props: { messages: ThreadMessage[] }) {
     const { messages } = props;
 
     const renderItem = useCallback(
-        ({ item, index }: LegendListRenderItemProps<ThreadMessage>) => {
+        ({ item, index }: ListRenderItemInfo<ThreadMessage>) => {
             const hasNextMessage = messages[index + 1] !== undefined;
             const hasPreviousMessage = messages[index - 1] !== undefined;
 
@@ -25,12 +25,13 @@ export function MessageList(props: { messages: ThreadMessage[] }) {
     );
 
     return (
-        <LegendList
+        <FlatList
             data={messages}
             renderItem={renderItem}
             keyExtractor={item => item.id}
-            maintainVisibleContentPosition
-            recycleItems
+            maintainVisibleContentPosition={{
+                minIndexForVisible: 0,
+            }}
         />
     );
 }
