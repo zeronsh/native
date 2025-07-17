@@ -1,5 +1,6 @@
 import { BaseMessageProps } from '$ai/types';
-import { Loader, View } from '$components/app';
+import { View } from '$components/app';
+import { BallPulseLoader } from '$components/loaders/ball-pulse';
 import { StyleSheet } from 'react-native-unistyles';
 
 export function PendingMessage(props: BaseMessageProps) {
@@ -12,13 +13,7 @@ export function PendingMessage(props: BaseMessageProps) {
 
     return (
         <View style={styles.container}>
-            <Loader
-                name="BallPulse"
-                style={{ width: 32, height: 32 }}
-                uniProps={theme => ({
-                    color: theme.colors.foregroundSecondary,
-                })}
-            />
+            <BallPulseLoader />
         </View>
     );
 }

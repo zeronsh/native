@@ -83,9 +83,6 @@ importers:
       react-native-gesture-handler:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
-      react-native-loader-kit:
-        specifier: ^3.0.0
-        version: 3.0.0(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       react-native-nitro-modules:
         specifier: 0.26.2
         version: 0.26.2(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -4109,12 +4106,6 @@ packages:
 
   react-native-is-edge-to-edge@1.2.1:
     resolution: {integrity: sha512-FLbPWl/MyYQWz+KwqOZsSyj2JmLKglHatd3xLZWskXOpRaio4LfEDEz8E/A6uD8QoTHW6Aobw1jbEwK7KMgR7Q==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-
-  react-native-loader-kit@3.0.0:
-    resolution: {integrity: sha512-r/+kqHiewOgUTCXhhF/gVEpfeit4piWZzPmvIHj9ua9rhSyRlZZzCpyNyXF+Cz49BXdRM/bm30ABpB0QBbE9Kw==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -9514,11 +9505,6 @@ snapshots:
       react-native: 0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0)
 
   react-native-is-edge-to-edge@1.2.1(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
-    dependencies:
-      react: 19.0.0
-      react-native: 0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0)
-
-  react-native-loader-kit@3.0.0(react-native@0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
       react-native: 0.79.5(@babel/core@7.28.0)(@types/react@19.0.14)(react@19.0.0)
