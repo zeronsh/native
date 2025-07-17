@@ -3,6 +3,7 @@ import { Button } from '$components/button';
 import { FontAwesome } from '$components/icon';
 import { StyleSheet } from 'react-native-unistyles';
 import { useState } from 'react';
+import { Platform } from 'react-native';
 
 export function PromptInput() {
     const [message, setMessage] = useState('');
@@ -48,7 +49,7 @@ const styles = StyleSheet.create((theme, rt) => ({
         paddingHorizontal: theme.utils.spacing(4),
         paddingTop: theme.utils.spacing(4),
         paddingBottom: {
-            xs: theme.utils.spacing(10),
+            xs: Platform.OS !== 'web' ? theme.utils.spacing(10) : theme.utils.spacing(4),
             md: theme.utils.spacing(4),
         },
         gap: theme.utils.spacing(4),
