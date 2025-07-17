@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm';
 import { expo } from '@better-auth/expo';
 
 export const auth = betterAuth({
+    trustedOrigins: ['znative://'],
     database: drizzleAdapter(db, {
         provider: 'pg',
         schema,

@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export const env = createEnv({
     server: {
+        NODE_ENV: z.string().optional(),
         ZERO_UPSTREAM_DB: z.url(),
         AI_GATEWAY_API_KEY: z.string().min(1),
     },

@@ -10,7 +10,7 @@ import { useDatabase } from '$zero/context';
 import { useSettings } from '$user/use-settings';
 import { ThreadProvider } from '$components/thread/context';
 import { env } from '$lib/env';
-import { fetch as expoFetch } from 'expo/fetch';
+import { fetch } from '$auth/fetch';
 
 export default function Thread() {
     const db = useDatabase();
@@ -21,7 +21,7 @@ export default function Thread() {
         new Chat<ThreadMessage>({
             transport: new DefaultChatTransport({
                 api: env.EXPO_PUBLIC_API_URL.concat('/api/thread'),
-                fetch: expoFetch as unknown as typeof fetch,
+                fetch,
                 credentials: 'include',
                 prepareSendMessagesRequest: async ({ id, messages }) => {
                     const settings = db.query.setting
@@ -37,7 +37,6 @@ export default function Thread() {
                     };
                 },
             }),
-            onError: error => console.error(error, 'ERROR'),
         })
     );
 

@@ -35,8 +35,12 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
             server: env.EXPO_PUBLIC_ZERO_URL,
             auth: async () => {
                 if (session) {
+                    const cookies = authClient.getCookie();
                     const response = await fetch(`${env.EXPO_PUBLIC_API_URL}/api/auth/token`, {
                         credentials: 'include',
+                        headers: {
+                            Cookie: cookies,
+                        },
                     });
                     const data = await response.json();
                     return data.token;
