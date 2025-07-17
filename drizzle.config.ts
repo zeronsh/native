@@ -3,7 +3,7 @@ import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
     out: './drizzle',
-    schema: './modules/database/schema.ts',
+    schema: './src/database/schema.ts',
     dialect: 'postgresql',
     dbCredentials: {
         url: env.ZERO_UPSTREAM_DB,

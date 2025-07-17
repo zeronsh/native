@@ -26,7 +26,6 @@ const styles = StyleSheet.create(theme => ({
     container: {
         paddingVertical: theme.utils.spacing(3),
         justifyContent: 'flex-end',
-        maxWidth: theme.widths.md,
         variants: {
             hasNextMessage: {
                 false: {
