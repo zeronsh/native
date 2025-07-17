@@ -6,6 +6,7 @@ import {
     ViewProps,
 } from 'react-native';
 import { StyleSheet, withUnistyles } from 'react-native-unistyles';
+import { LoaderKitView } from 'react-native-loader-kit';
 
 export const View = ({ style, ...props }: ViewProps) => {
     return <RNView {...props} style={[styles.view, style]} />;
@@ -16,6 +17,8 @@ export const Text = ({ style, ...props }: TextProps) => {
 };
 
 export const TextInput = withUnistyles(RNTextInput);
+
+export const Loader = withUnistyles(LoaderKitView);
 
 const styles = StyleSheet.create(theme => ({
     view: {

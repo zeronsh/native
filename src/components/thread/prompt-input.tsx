@@ -44,6 +44,7 @@ const styles = StyleSheet.create((theme, rt) => ({
         width: '100%',
         maxWidth: theme.widths.md,
         backgroundColor: theme.colors.secondary,
+        borderColor: theme.colors.border,
         borderTopLeftRadius: theme.utils.radius(6),
         borderTopRightRadius: theme.utils.radius(6),
         paddingHorizontal: theme.utils.spacing(4),
@@ -52,7 +53,7 @@ const styles = StyleSheet.create((theme, rt) => ({
             xs: Platform.OS !== 'web' ? theme.utils.spacing(10) : theme.utils.spacing(4),
             md: theme.utils.spacing(4),
         },
-        gap: theme.utils.spacing(4),
+        gap: theme.utils.spacing(2),
     },
     textInput: {
         flex: 1,

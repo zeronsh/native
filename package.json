@@ -17,9 +17,11 @@
         "zero:dev": "dotenvx run -- npx zero-cache-dev --port 5500 -p src/zero/index.ts "
     },
     "dependencies": {
+        "@ai-sdk/react": "2.0.0-beta.23",
         "@better-auth/expo": "^1.2.12",
         "@expo-google-fonts/ibm-plex-sans": "^0.4.0",
         "@expo/vector-icons": "^14.1.0",
+        "@legendapp/list": "^1.1.4",
         "@rocicorp/zero": "^0.21.2025070200",
         "@t3-oss/env-core": "^0.13.8",
         "ai": "5.0.0-beta.21",
@@ -41,12 +43,14 @@
         "react-native": "0.79.5",
         "react-native-edge-to-edge": "^1.6.2",
         "react-native-gesture-handler": "~2.24.0",
+        "react-native-loader-kit": "^3.0.0",
         "react-native-nitro-modules": "0.26.2",
         "react-native-reanimated": "~3.17.4",
         "react-native-safe-area-context": "5.4.0",
         "react-native-screens": "~4.11.1",
         "react-native-unistyles": "^3.0.4",
         "react-native-web": "^0.20.0",
+        "ts-pattern": "^5.7.1",
         "zod": "^4.0.5"
     },
     "devDependencies": {

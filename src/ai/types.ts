@@ -25,3 +25,12 @@ export type Tools = {};
 
 export type ThreadMessage = UIMessage<Metadata, DataParts, Tools>;
 export type MessagePart = UIMessagePart<DataParts, Tools>;
+
+export type BaseMessageProps = {
+    hasNextMessage: boolean;
+    hasPreviousMessage: boolean;
+};
+
+export type MessageProps = {
+    message: ThreadMessage;
+} & BaseMessageProps;

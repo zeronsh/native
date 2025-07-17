@@ -44,7 +44,7 @@ export const lightTheme = {
         accentForeground: '#000000',
         destructive: '#e54b4f',
         destructiveForeground: '#ffffff',
-        border: '#e4e4e4',
+        border: 'rgba(0, 0, 0, 0.2)',
         input: '#ebebeb',
         ring: '#000000',
         // Legacy colors for backward compatibility
@@ -74,7 +74,7 @@ export const darkTheme = {
         accentForeground: '#ffffff',
         destructive: '#ff5b5b',
         destructiveForeground: '#000000',
-        border: '#242424',
+        border: 'rgba(255, 255, 255, 0.2)',
         input: '#333333',
         ring: '#a4a4a4',
         // Legacy colors for backward compatibility
