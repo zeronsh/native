@@ -30,6 +30,30 @@
             "favicon": "./assets/favicon.png"
         },
         "scheme": "znative",
-        "plugins": ["expo-router", "expo-secure-store"]
+        "plugins": [
+            "expo-router",
+            "expo-secure-store",
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/100Thin/IBMPlexSans_100Thin.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/100Thin_Italic/IBMPlexSans_100Thin_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/200ExtraLight/IBMPlexSans_200ExtraLight.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/200ExtraLight_Italic/IBMPlexSans_200ExtraLight_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/300Light/IBMPlexSans_300Light.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/300Light_Italic/IBMPlexSans_300Light_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/400Regular_Italic/IBMPlexSans_400Regular_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/500Medium/IBMPlexSans_500Medium.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/500Medium_Italic/IBMPlexSans_500Medium_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/600SemiBold_Italic/IBMPlexSans_600SemiBold_Italic.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf",
+                        "node_modules/@expo-google-fonts/ibm-plex-sans/700Bold_Italic/IBMPlexSans_700Bold_Italic.ttf"
+                    ]
+                }
+            ]
+        ]
     }
 }

@@ -25,5 +25,6 @@ const styles = StyleSheet.create(theme => ({
     text: {
         color: theme.colors.foreground,
         fontSize: theme.typography.size(1),
+        fontFamily: theme.typography.fontFamily,
     },
 }));

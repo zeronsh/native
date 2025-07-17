@@ -133,6 +133,7 @@ const styles = StyleSheet.create(theme => ({
         fontWeight: '500',
         textAlign: 'center',
         color: theme.colors.primaryForeground,
+        fontFamily: theme.typography.fontFamily,
         variants: {
             variant: {
                 default: {

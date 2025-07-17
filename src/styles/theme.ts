@@ -1,5 +1,12 @@
+import { Platform } from 'react-native';
+
 const typography = {
     size: (value: number) => value * 16,
+    fontFamily: Platform.select({
+        ios: 'IBMPlexSans-Regular',
+        android: 'IBMPlexSans_400Regular',
+        web: 'IBMPlexSans_400Regular',
+    }),
 } as const;
 
 const utils = {
