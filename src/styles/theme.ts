@@ -44,12 +44,6 @@ export const lightTheme = {
         foregroundSecondary: '#525252',
         backgroundSecondary: '#ebebeb',
     },
-    margins: {
-        sm: 2,
-        md: 4,
-        lg: 8,
-        xl: 12,
-    },
 } as const;
 
 export const darkTheme = {
@@ -79,11 +73,5 @@ export const darkTheme = {
         // Legacy colors for backward compatibility
         foregroundSecondary: '#a4a4a4',
         backgroundSecondary: '#222222',
-    },
-    margins: {
-        sm: 2,
-        md: 4,
-        lg: 8,
-        xl: 12,
     },
 } as const;

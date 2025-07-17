@@ -2,15 +2,25 @@ import { forwardRef } from 'react';
 import { Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import { StyleSheet, UnistylesVariants } from 'react-native-unistyles';
 
-type ButtonProps = {
-    title?: string;
-    leftIcon?: React.ReactNode;
-    rightIcon?: React.ReactNode;
-} & TouchableOpacityProps &
+type ButtonProps = (
+    | {
+          title?: string;
+          leftIcon?: React.ReactNode;
+          rightIcon?: React.ReactNode;
+          icon?: never;
+      }
+    | {
+          icon?: React.ReactNode;
+          title?: never;
+          leftIcon?: never;
+          rightIcon?: never;
+      }
+) &
+    TouchableOpacityProps &
     UnistylesVariants<typeof styles>;
 
 export const Button = forwardRef<View, ButtonProps>(
-    ({ title, leftIcon, rightIcon, variant, size, ...touchableProps }, ref) => {
+    ({ title, leftIcon, rightIcon, variant, size, icon, ...touchableProps }, ref) => {
         styles.useVariants({ variant, size });
         return (
             <TouchableOpacity
@@ -21,6 +31,7 @@ export const Button = forwardRef<View, ButtonProps>(
             >
                 {leftIcon && <View style={styles.iconContainer}>{leftIcon}</View>}
                 {title && <Text style={styles.text}>{title}</Text>}
+                {icon && <View style={styles.iconContainer}>{icon}</View>}
                 {rightIcon && <View style={styles.iconContainer}>{rightIcon}</View>}
             </TouchableOpacity>
         );

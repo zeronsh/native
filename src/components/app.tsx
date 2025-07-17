@@ -1,5 +1,11 @@
-import { Text as RNText, TextProps, View as RNView, ViewProps } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import {
+    Text as RNText,
+    TextProps,
+    TextInput as RNTextInput,
+    View as RNView,
+    ViewProps,
+} from 'react-native';
+import { StyleSheet, withUnistyles } from 'react-native-unistyles';
 
 export const View = ({ style, ...props }: ViewProps) => {
     return <RNView {...props} style={[styles.view, style]} />;
@@ -8,6 +14,8 @@ export const View = ({ style, ...props }: ViewProps) => {
 export const Text = ({ style, ...props }: TextProps) => {
     return <RNText {...props} style={[styles.text, style]} />;
 };
+
+export const TextInput = withUnistyles(RNTextInput);
 
 const styles = StyleSheet.create(theme => ({
     view: {

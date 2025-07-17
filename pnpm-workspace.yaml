@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@rocicorp/zero-sqlite3'
+  - esbuild
+  - protobufjs
+  - react-native-nitro-modules
