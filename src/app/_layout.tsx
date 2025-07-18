@@ -2,37 +2,17 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { DatabaseProvider } from '$zero/context';
 import { Drawer as ExpoDrawer } from 'expo-router/drawer';
 import { withUnistyles } from 'react-native-unistyles';
-import { FontAwesome } from '$components/icon';
-import { Button } from '$components/button';
-import { DrawerActions } from '@react-navigation/native';
-import { useNavigation } from 'expo-router';
+import { SidebarToggle } from '$components/sidebar/sidebar-toggle';
+import { SidebarContent } from '$components/sidebar/sidebar-content';
 
 const Drawer = withUnistyles(ExpoDrawer);
-
-function DrawerToggleButton({ theme }: { theme: any }) {
-    const navigation = useNavigation();
-
-    return (
-        <Button
-            variant="ghost"
-            size="icon"
-            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-            icon={
-                <FontAwesome
-                    name="bars-staggered"
-                    color={theme.colors.foreground}
-                    size={theme.typography.size(1)}
-                />
-            }
-        />
-    );
-}
 
 export default function RootLayout() {
     return (
         <DatabaseProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <Drawer
+                    drawerContent={SidebarContent}
                     uniProps={theme => ({
                         screenOptions: {
                             drawerStyle: {
@@ -53,14 +33,22 @@ export default function RootLayout() {
                             sceneStyle: {
                                 backgroundColor: theme.colors.background,
                             },
-                            headerLeft: () => <DrawerToggleButton theme={theme} />,
+                            headerLeft: SidebarToggle,
+                            overlayColor: theme.colors.border,
                         },
                     })}
                 >
                     <ExpoDrawer.Screen
                         name="index"
                         options={{
-                            title: 'Chat',
+                            title: '',
+                            drawerLabel: 'Chat',
+                        }}
+                    />
+                    <ExpoDrawer.Screen
+                        name="[threadId]"
+                        options={{
+                            title: '',
                             drawerLabel: 'Chat',
                         }}
                     />

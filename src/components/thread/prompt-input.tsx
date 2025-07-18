@@ -34,10 +34,14 @@ export function PromptInput() {
             <View style={styles.footer}>
                 <Button
                     size="icon"
+                    style={{
+                        borderRadius: 100,
+                    }}
                     onPress={handleSubmit}
                     icon={
                         <FontAwesome
                             name="arrow-up"
+                            // @ts-expect-error
                             uniProps={theme => ({
                                 color: theme.colors.primaryForeground,
                             })}
@@ -61,7 +65,7 @@ const styles = StyleSheet.create((theme, rt) => ({
         paddingHorizontal: theme.utils.spacing(4),
         paddingTop: theme.utils.spacing(4),
         paddingBottom: {
-            xs: Platform.OS !== 'web' ? theme.utils.spacing(10) : theme.utils.spacing(4),
+            xs: Platform.OS !== 'web' ? theme.utils.spacing(8) : theme.utils.spacing(4),
             md: theme.utils.spacing(4),
         },
         gap: theme.utils.spacing(2),

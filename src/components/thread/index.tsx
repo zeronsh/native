@@ -3,7 +3,7 @@ import { MessageList } from '$components/thread/message-list';
 import { PromptInput } from '$components/thread/prompt-input';
 import { StyleSheet } from 'react-native-unistyles';
 import { useChat, Chat } from '@ai-sdk/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { ThreadMessage } from '$ai/types';
 import { DefaultChatTransport } from 'ai';
 import { useDatabase } from '$zero/context';
@@ -12,13 +12,15 @@ import { ThreadProvider } from '$components/thread/context';
 import { env } from '$lib/env';
 import { fetch } from '$auth/fetch';
 
-export default function Thread() {
+export default function Thread({ id, messages }: { id?: string; messages?: ThreadMessage[] }) {
     const db = useDatabase();
 
     useSettings();
 
     const thread = useRef(
         new Chat<ThreadMessage>({
+            id,
+            messages,
             transport: new DefaultChatTransport({
                 api: env.EXPO_PUBLIC_API_URL.concat('/api/thread'),
                 fetch,
@@ -40,14 +42,20 @@ export default function Thread() {
         })
     );
 
-    const { messages } = useChat({
+    const chat = useChat({
         chat: thread.current,
     });
+
+    useEffect(() => {
+        if (chat.messages.length === 0 && messages && messages.length > 0) {
+            chat.setMessages(messages);
+        }
+    }, [chat.messages, messages]);
 
     return (
         <ThreadProvider thread={thread.current}>
             <View style={styles.container}>
-                <MessageList messages={messages} />
+                <MessageList messages={chat.messages} />
                 <PromptInput />
             </View>
         </ThreadProvider>

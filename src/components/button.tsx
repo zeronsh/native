@@ -30,7 +30,11 @@ export const Button = forwardRef<View, ButtonProps>(
                 accessibilityRole="button"
             >
                 {leftIcon && <View style={styles.iconContainer}>{leftIcon}</View>}
-                {title && <Text style={styles.text}>{title}</Text>}
+                {title && (
+                    <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
+                        {title}
+                    </Text>
+                )}
                 {icon && <View style={styles.iconContainer}>{icon}</View>}
                 {rightIcon && <View style={styles.iconContainer}>{rightIcon}</View>}
             </TouchableOpacity>
@@ -119,6 +123,16 @@ const styles = StyleSheet.create(theme => ({
                     borderRadius: theme.utils.radius(1.5),
                     paddingHorizontal: theme.utils.spacing(6),
                 },
+                xl: {
+                    height: 48,
+                    borderRadius: theme.utils.radius(1.5),
+                    paddingHorizontal: theme.utils.spacing(8),
+                },
+                '2xl': {
+                    height: 56,
+                    borderRadius: theme.utils.radius(1.5),
+                    paddingHorizontal: theme.utils.spacing(10),
+                },
                 icon: {
                     width: 36,
                     height: 36,
@@ -129,7 +143,8 @@ const styles = StyleSheet.create(theme => ({
         },
     },
     text: {
-        fontSize: 14,
+        fontSize: theme.typography.size(1),
+        flexShrink: 1,
         fontWeight: '500',
         textAlign: 'center',
         color: theme.colors.primaryForeground,
@@ -158,16 +173,19 @@ const styles = StyleSheet.create(theme => ({
             },
             size: {
                 default: {
-                    fontSize: 14,
+                    fontSize: theme.typography.size(1),
                 },
                 sm: {
-                    fontSize: 14,
+                    fontSize: theme.typography.size(1),
                 },
                 lg: {
-                    fontSize: 14,
+                    fontSize: theme.typography.size(1),
+                },
+                xl: {
+                    fontSize: theme.typography.size(1),
                 },
                 icon: {
-                    fontSize: 14,
+                    fontSize: theme.typography.size(1),
                 },
             },
         },
