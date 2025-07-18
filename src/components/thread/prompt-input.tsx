@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import { useState } from 'react';
 import { Platform } from 'react-native';
 import { useThread } from '$components/thread/context';
+import { ModelSwitcher } from '$components/thread/model-switcher';
 
 export function PromptInput() {
     const thread = useThread();
