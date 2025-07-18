@@ -4,40 +4,39 @@ import { FontAwesome } from '$components/icon';
 import { SpinningLoader } from '$components/loaders/spinning-loader';
 import { useThreads } from '$hooks/use-threads';
 import { Thread } from '$zero/types';
-import { Link } from 'expo-router';
+import { Link, useGlobalSearchParams } from 'expo-router';
 import { FlatList } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 export function SidebarContent() {
     const threads = useThreads();
+    const { threadId } = useGlobalSearchParams<{ threadId?: string }>();
     return (
         <View style={styles.container}>
             <FlatList
                 ListHeaderComponent={SidebarHeader}
                 contentContainerStyle={styles.content}
                 data={threads}
-                renderItem={SidebarItem}
+                renderItem={({ item }: { item: Thread }) => {
+                    return (
+                        <Link href={`/${item.id}`} asChild>
+                            <Button
+                                size="xl"
+                                variant={threadId === item.id ? 'secondary' : 'ghost'}
+                                style={styles.threadItem}
+                                title={item.title ?? ''}
+                                rightIcon={
+                                    item.status === 'streaming' || item.status === 'submitted' ? (
+                                        <SpinningLoader size={16} />
+                                    ) : null
+                                }
+                            />
+                        </Link>
+                    );
+                }}
                 keyExtractor={item => item.id}
             />
         </View>
-    );
-}
-
-function SidebarItem({ item }: { item: Thread }) {
-    return (
-        <Link href={`/${item.id}`} asChild>
-            <Button
-                size="xl"
-                variant="ghost"
-                style={styles.threadItem}
-                title={item.title ?? ''}
-                rightIcon={
-                    item.status === 'streaming' || item.status === 'submitted' ? (
-                        <SpinningLoader size={16} />
-                    ) : null
-                }
-            />
-        </Link>
     );
 }
 
@@ -80,11 +79,13 @@ const styles = StyleSheet.create((theme, rt) => ({
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        borderRadius: theme.utils.radius(3),
     },
     threadItem: {
         width: '100%',
         maxWidth: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
+        borderRadius: theme.utils.radius(3),
     },
 }));

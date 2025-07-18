@@ -206,7 +206,7 @@ const styles = StyleSheet.create((theme, rt) => ({
         height: 26,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: theme.utils.radius(1),
+        borderRadius: theme.utils.radius(2),
     },
     capabilityVision: {
         backgroundColor: theme.colors.blue[700],
