@@ -88,39 +88,63 @@ export function ModelSwitcher() {
                                             switch (capability) {
                                                 case 'vision':
                                                     return (
-                                                        <FontAwesome
+                                                        <View
                                                             key={capability}
-                                                            name="image"
-                                                            // @ts-expect-error
-                                                            uniProps={theme => ({
-                                                                color: theme.colors.blue[400],
-                                                                size: theme.typography.size(1),
-                                                            })}
-                                                        />
+                                                            style={[
+                                                                styles.capability,
+                                                                styles.capabilityVision,
+                                                            ]}
+                                                        >
+                                                            <FontAwesome
+                                                                key={capability}
+                                                                name="image"
+                                                                // @ts-expect-error
+                                                                uniProps={theme => ({
+                                                                    color: theme.colors.blue[300],
+                                                                    size: theme.typography.size(1),
+                                                                })}
+                                                            />
+                                                        </View>
                                                     );
                                                 case 'tools':
                                                     return (
-                                                        <FontAwesome
+                                                        <View
                                                             key={capability}
-                                                            name="wrench"
-                                                            // @ts-expect-error
-                                                            uniProps={theme => ({
-                                                                color: theme.colors.pink[400],
-                                                                size: theme.typography.size(1),
-                                                            })}
-                                                        />
+                                                            style={[
+                                                                styles.capability,
+                                                                styles.capabilityTools,
+                                                            ]}
+                                                        >
+                                                            <FontAwesome
+                                                                key={capability}
+                                                                name="wrench"
+                                                                // @ts-expect-error
+                                                                uniProps={theme => ({
+                                                                    color: theme.colors.pink[300],
+                                                                    size: theme.typography.size(1),
+                                                                })}
+                                                            />
+                                                        </View>
                                                     );
                                                 case 'reasoning':
                                                     return (
-                                                        <FontAwesome
+                                                        <View
                                                             key={capability}
-                                                            name="brain"
-                                                            // @ts-expect-error
-                                                            uniProps={theme => ({
-                                                                color: theme.colors.purple[400],
-                                                                size: theme.typography.size(1),
-                                                            })}
-                                                        />
+                                                            style={[
+                                                                styles.capability,
+                                                                styles.capabilityReasoning,
+                                                            ]}
+                                                        >
+                                                            <FontAwesome
+                                                                key={capability}
+                                                                name="lightbulb"
+                                                                // @ts-expect-error
+                                                                uniProps={theme => ({
+                                                                    color: theme.colors.purple[300],
+                                                                    size: theme.typography.size(1),
+                                                                })}
+                                                            />
+                                                        </View>
                                                     );
                                             }
                                         })}
@@ -152,6 +176,7 @@ const styles = StyleSheet.create((theme, rt) => ({
     modelItem: {
         justifyContent: 'flex-start',
         height: 'auto',
+        paddingHorizontal: theme.utils.spacing(2),
     },
     modelItemContent: {
         flexDirection: 'column',
@@ -174,5 +199,22 @@ const styles = StyleSheet.create((theme, rt) => ({
         gap: theme.utils.spacing(2),
         paddingHorizontal: theme.utils.spacing(2),
         paddingBottom: rt.insets.bottom,
+    },
+    capability: {
+        padding: theme.utils.spacing(1),
+        width: 26,
+        height: 26,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: theme.utils.radius(1),
+    },
+    capabilityVision: {
+        backgroundColor: theme.colors.blue[700],
+    },
+    capabilityTools: {
+        backgroundColor: theme.colors.pink[700],
+    },
+    capabilityReasoning: {
+        backgroundColor: theme.colors.purple[700],
     },
 }));
