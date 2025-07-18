@@ -66,7 +66,6 @@ const styles = StyleSheet.create(theme => ({
     contentContainer: {
         flex: 1,
         backgroundColor: theme.colors.background,
-        padding: theme.utils.spacing(4),
     },
     handleIndicatorStyle: {
         backgroundColor: theme.colors.border,

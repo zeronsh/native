@@ -3,6 +3,7 @@ import { Button } from '$components/button';
 import { FontAwesome, ModelIcon } from '$components/icon';
 import { BottomSheet } from '$components/bottom-sheet';
 import { StyleSheet } from 'react-native-unistyles';
+import { ScrollView } from 'react-native';
 import { useSettings } from '$hooks/use-settings';
 import { useModels } from '$hooks/use-models';
 import { useDatabase } from '$zero/context';
@@ -49,7 +50,11 @@ export function ModelSwitcher() {
                 />
             )}
         >
-            <View style={styles.modelList}>
+            <ScrollView
+                style={styles.modelListContainer}
+                contentContainerStyle={styles.modelList}
+                showsVerticalScrollIndicator={true}
+            >
                 {models.map(model => (
                     <Button
                         key={model.id}
@@ -65,62 +70,73 @@ export function ModelSwitcher() {
                             bottomSheetRef.current?.dismiss();
                         }}
                         children={
-                            <View style={styles.modelTitle}>
-                                <ModelIcon
-                                    name={model.icon}
-                                    // @ts-expect-error
-                                    uniProps={theme => ({
-                                        color: theme.colors.foreground,
-                                        size: theme.typography.size(1),
-                                    })}
-                                />
-                                <Text>{model.name}</Text>
-                                <View style={{ flex: 1 }} />
-                                {model.capabilities?.map(capability => {
-                                    switch (capability) {
-                                        case 'vision':
-                                            return (
-                                                <FontAwesome
-                                                    key={capability}
-                                                    name="image"
-                                                    // @ts-expect-error
-                                                    uniProps={theme => ({
-                                                        color: theme.colors.blue[400],
-                                                        size: theme.typography.size(1),
-                                                    })}
-                                                />
-                                            );
-                                        case 'tools':
-                                            return (
-                                                <FontAwesome
-                                                    key={capability}
-                                                    name="wrench"
-                                                    // @ts-expect-error
-                                                    uniProps={theme => ({
-                                                        color: theme.colors.pink[400],
-                                                        size: theme.typography.size(1),
-                                                    })}
-                                                />
-                                            );
-                                        case 'reasoning':
-                                            return (
-                                                <FontAwesome
-                                                    key={capability}
-                                                    name="brain"
-                                                    // @ts-expect-error
-                                                    uniProps={theme => ({
-                                                        color: theme.colors.purple[400],
-                                                        size: theme.typography.size(1),
-                                                    })}
-                                                />
-                                            );
-                                    }
-                                })}
+                            <View style={styles.modelItemContent}>
+                                <View style={styles.modelTitle}>
+                                    <ModelIcon
+                                        name={model.icon}
+                                        // @ts-expect-error
+                                        uniProps={theme => ({
+                                            color: theme.colors.foreground,
+                                            size: theme.typography.size(1),
+                                        })}
+                                    />
+                                    <Text>{model.name}</Text>
+                                    <View style={{ flex: 1 }} />
+                                    {[...(model?.capabilities || [])]
+                                        .sort((a, b) => a.localeCompare(b))
+                                        .map(capability => {
+                                            switch (capability) {
+                                                case 'vision':
+                                                    return (
+                                                        <FontAwesome
+                                                            key={capability}
+                                                            name="image"
+                                                            // @ts-expect-error
+                                                            uniProps={theme => ({
+                                                                color: theme.colors.blue[400],
+                                                                size: theme.typography.size(1),
+                                                            })}
+                                                        />
+                                                    );
+                                                case 'tools':
+                                                    return (
+                                                        <FontAwesome
+                                                            key={capability}
+                                                            name="wrench"
+                                                            // @ts-expect-error
+                                                            uniProps={theme => ({
+                                                                color: theme.colors.pink[400],
+                                                                size: theme.typography.size(1),
+                                                            })}
+                                                        />
+                                                    );
+                                                case 'reasoning':
+                                                    return (
+                                                        <FontAwesome
+                                                            key={capability}
+                                                            name="brain"
+                                                            // @ts-expect-error
+                                                            uniProps={theme => ({
+                                                                color: theme.colors.purple[400],
+                                                                size: theme.typography.size(1),
+                                                            })}
+                                                        />
+                                                    );
+                                            }
+                                        })}
+                                </View>
+                                <Text
+                                    style={styles.modelDescription}
+                                    numberOfLines={1}
+                                    ellipsizeMode="tail"
+                                >
+                                    {model.description}
+                                </Text>
                             </View>
                         }
                     />
                 ))}
-            </View>
+            </ScrollView>
         </BottomSheet>
     );
 }
@@ -135,14 +151,28 @@ const styles = StyleSheet.create((theme, rt) => ({
     },
     modelItem: {
         justifyContent: 'flex-start',
+        height: 'auto',
+    },
+    modelItemContent: {
+        flexDirection: 'column',
+        gap: theme.utils.spacing(2),
+    },
+    modelDescription: {
+        fontSize: theme.typography.size(0.8),
+        color: theme.colors.foreground,
+        opacity: 0.75,
     },
     modelTitle: {
         alignItems: 'center',
         gap: theme.utils.spacing(2),
     },
+    modelListContainer: {
+        maxHeight: 400,
+    },
     modelList: {
         flexDirection: 'column',
         gap: theme.utils.spacing(2),
+        paddingHorizontal: theme.utils.spacing(2),
         paddingBottom: rt.insets.bottom,
     },
 }));
