@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useRef } from 'react';
+import React, { Fragment, useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { BottomSheetModal, BottomSheetView, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
@@ -10,6 +10,7 @@ type BottomSheetTriggerProps = {
 
 type BottomSheetProps = {
     children: React.ReactNode;
+    ref?: React.RefObject<BottomSheetModal | null>;
     containerStyle?: StyleProp<ViewStyle>;
     handleIndicatorStyle?: StyleProp<ViewStyle>;
     backgroundStyle?: StyleProp<ViewStyle>;
@@ -20,11 +21,13 @@ type BottomSheetProps = {
 export function BottomSheet(props: BottomSheetProps) {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-    const snapPoints = useMemo(() => props.snapPoints || ['50%', '80%'], [props.snapPoints]);
+    const snapPoints = useMemo(() => props.snapPoints || [], [props.snapPoints]);
 
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
+
+    useImperativeHandle(props.ref, () => bottomSheetModalRef.current!);
 
     return (
         <Fragment>

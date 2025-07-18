@@ -11,6 +11,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
     const [fontsLoaded, error] = useFonts({
         IBMPlexSans_400Regular,
+        'model-icons': require('../../assets/model-icons.ttf'),
     });
 
     useEffect(() => {

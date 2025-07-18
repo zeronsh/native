@@ -8,19 +8,28 @@ type ButtonProps = (
           leftIcon?: React.ReactNode;
           rightIcon?: React.ReactNode;
           icon?: never;
+          children?: never;
+      }
+    | {
+          title?: never;
+          children?: React.ReactNode;
+          leftIcon?: React.ReactNode;
+          rightIcon?: React.ReactNode;
+          icon?: never;
       }
     | {
           icon?: React.ReactNode;
           title?: never;
           leftIcon?: never;
           rightIcon?: never;
+          children?: never;
       }
 ) &
     TouchableOpacityProps &
     UnistylesVariants<typeof styles>;
 
 export const Button = forwardRef<View, ButtonProps>(
-    ({ title, leftIcon, rightIcon, variant, size, icon, ...touchableProps }, ref) => {
+    ({ title, leftIcon, rightIcon, variant, size, icon, children, ...touchableProps }, ref) => {
         styles.useVariants({ variant, size });
         return (
             <TouchableOpacity
@@ -35,6 +44,7 @@ export const Button = forwardRef<View, ButtonProps>(
                         {title}
                     </Text>
                 )}
+                {children && children}
                 {icon && <View style={styles.iconContainer}>{icon}</View>}
                 {rightIcon && <View style={styles.iconContainer}>{rightIcon}</View>}
             </TouchableOpacity>
@@ -145,7 +155,6 @@ const styles = StyleSheet.create(theme => ({
     text: {
         fontSize: theme.typography.size(1),
         flexShrink: 1,
-        fontWeight: '500',
         textAlign: 'center',
         color: theme.colors.primaryForeground,
         fontFamily: theme.typography.fontFamily,

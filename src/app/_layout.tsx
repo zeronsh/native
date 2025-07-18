@@ -5,10 +5,28 @@ import { withUnistyles } from 'react-native-unistyles';
 import { SidebarToggle } from '$components/sidebar/sidebar-toggle';
 import { SidebarContent } from '$components/sidebar/sidebar-content';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { useEffect } from 'react';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 const Drawer = withUnistyles(ExpoDrawer);
 
 export default function RootLayout() {
+    const [fontsLoaded, error] = useFonts({
+        'model-icons': require('../../assets/model-icons.ttf'),
+    });
+
+    useEffect(() => {
+        if (fontsLoaded || error) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded, error]);
+
+    if (!fontsLoaded && !error) {
+        return null;
+    }
     return (
         <DatabaseProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
