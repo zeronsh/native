@@ -4,15 +4,15 @@ import { FontAwesome } from '$components/icon';
 import { ModelSwitcher } from '$components/thread/model-switcher';
 import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from 'expo-router';
+import { StyleSheet } from 'react-native-unistyles';
 
 export function SidebarToggle() {
     const navigation = useNavigation();
-
     return (
-        <View style={{ alignItems: 'center' }}>
+        <View style={styles.container}>
             <Button
-                variant="ghost"
                 size="icon"
+                variant="ghost"
                 onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
                 icon={
                     <FontAwesome
@@ -29,3 +29,10 @@ export function SidebarToggle() {
         </View>
     );
 }
+
+const styles = StyleSheet.create(theme => ({
+    container: {
+        alignItems: 'center',
+        gap: theme.utils.spacing(2),
+    },
+}));
