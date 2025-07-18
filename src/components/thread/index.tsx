@@ -26,15 +26,16 @@ export default function Thread({ id, messages }: { id?: string; messages?: Threa
                 fetch,
                 credentials: 'include',
                 prepareSendMessagesRequest: async ({ id, messages }) => {
-                    const settings = db.query.setting
+                    const settings = await db.query.setting
                         .where('userId', '=', db.userID)
                         .one()
-                        .materialize();
+                        .run();
+
                     return {
                         body: {
                             id,
                             message: messages.at(-1),
-                            modelId: settings.data?.modelId,
+                            modelId: settings?.modelId,
                         },
                     };
                 },

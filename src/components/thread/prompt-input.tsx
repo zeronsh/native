@@ -5,14 +5,11 @@ import { StyleSheet } from 'react-native-unistyles';
 import { useState } from 'react';
 import { Platform } from 'react-native';
 import { useThread } from '$components/thread/context';
-import { useRouter } from 'expo-router';
 
 export function PromptInput() {
     const thread = useThread();
-    const router = useRouter();
     const [message, setMessage] = useState('');
     const handleSubmit = () => {
-        router.replace(`/${thread.id}`);
         thread.sendMessage({
             parts: [{ type: 'text', text: message }],
         });
