@@ -20,11 +20,9 @@ type BottomSheetProps = {
 export function BottomSheet(props: BottomSheetProps) {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-    // Default snap points if none provided
     const snapPoints = useMemo(() => props.snapPoints || ['50%', '80%'], [props.snapPoints]);
 
     const handlePresentModalPress = useCallback(() => {
-        console.log('Presenting modal...');
         bottomSheetModalRef.current?.present();
     }, []);
 
@@ -52,9 +50,6 @@ export function BottomSheet(props: BottomSheetProps) {
                         <BlurView intensity={50} style={{ flex: 1 }} />
                     </BottomSheetBackdrop>
                 )}
-                onChange={index => {
-                    console.log('Modal index changed to:', index);
-                }}
             >
                 <BottomSheetView style={[styles.contentContainer, props.containerStyle]}>
                     {props.children}

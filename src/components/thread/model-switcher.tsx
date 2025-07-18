@@ -36,7 +36,9 @@ export function ModelSwitcher() {
 const styles = StyleSheet.create(theme => ({
     button: {
         flex: 1,
-        maxWidth: 200,
+        minWidth: 180,
+        maxWidth: 180,
         justifyContent: 'space-between',
+        borderRadius: theme.utils.radius(3),
     },
 }));
