@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { ThreadMessage } from '$ai/types';
 import { DefaultChatTransport } from 'ai';
 import { useDatabase } from '$zero/context';
-import { useSettings } from '$user/use-settings';
+import { useSettings } from '$hooks/use-settings';
 import { ThreadProvider } from '$components/thread/context';
 import { env } from '$lib/env';
 import { fetch } from '$auth/fetch';
@@ -54,13 +54,12 @@ export default function Thread() {
     );
 }
 
-const styles = StyleSheet.create((_, rt) => ({
+const styles = StyleSheet.create(_ => ({
     container: {
         flex: 1,
         height: '100%',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: rt.insets.top,
     },
 }));
