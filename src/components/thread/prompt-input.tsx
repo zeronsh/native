@@ -4,10 +4,10 @@ import { FontAwesome } from '$components/icon';
 import { StyleSheet } from 'react-native-unistyles';
 import { useState } from 'react';
 import { Platform } from 'react-native';
-import { useThread } from '$components/thread/context';
+import { useThreadContext } from '$thread/context';
 
 export function PromptInput() {
-    const thread = useThread();
+    const thread = useThreadContext();
     const [message, setMessage] = useState('');
     const handleSubmit = () => {
         thread.sendMessage({

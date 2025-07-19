@@ -128,12 +128,18 @@ importers:
       resumable-stream:
         specifier: ^2.2.1
         version: 2.2.1
+      throttleit:
+        specifier: ^2.1.0
+        version: 2.1.0
       ts-pattern:
         specifier: ^5.7.1
         version: 5.7.1
       zod:
         specifier: ^4.0.5
         version: 4.0.5
+      zustand:
+        specifier: ^5.0.6
+        version: 5.0.6(@types/react@19.0.14)(react@19.0.0)(use-sync-external-store@1.5.0(react@19.0.0))
     devDependencies:
       '@babel/core':
         specifier: ^7.25.2
@@ -5031,6 +5037,24 @@ packages:
 
   zod@4.0.5:
     resolution: {integrity: sha512-/5UuuRPStvHXu7RS+gmvRf4NXrNxpSllGwDnCBcJZtQsKrviYXm54yDGV2KYNLT5kq0lHGcl7lqWJLgSaG+tgA==}
+
+  zustand@5.0.6:
+    resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
 
 snapshots:
 
@@ -10513,3 +10537,9 @@ snapshots:
   zod@3.25.76: {}
 
   zod@4.0.5: {}
+
+  zustand@5.0.6(@types/react@19.0.14)(react@19.0.0)(use-sync-external-store@1.5.0(react@19.0.0)):
+    optionalDependencies:
+      '@types/react': 19.0.14
+      react: 19.0.0
+      use-sync-external-store: 1.5.0(react@19.0.0)

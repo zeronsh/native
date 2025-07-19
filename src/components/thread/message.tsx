@@ -1,15 +1,17 @@
-import { ThreadMessage } from '$ai/types';
 import { AssistantMessage } from '$components/thread/assistant-message';
 import { PendingMessage } from '$components/thread/pending-message';
 import { UserMessage } from '$components/thread/user-message';
 import { Fragment } from 'react';
+import { useMessageById } from '$thread/context';
 
-export function MessageItem(props: {
-    message: ThreadMessage;
+export function Message(props: {
+    id: string;
     hasNextMessage: boolean;
     hasPreviousMessage: boolean;
 }) {
-    const { message, hasNextMessage, hasPreviousMessage } = props;
+    const { id, hasNextMessage, hasPreviousMessage } = props;
+
+    const message = useMessageById(id);
 
     if (message.role === 'assistant' && message.parts.length > 0) {
         return (
